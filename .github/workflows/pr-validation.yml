@@ -1,0 +1,50 @@
+name: Pull Request Validation
+
+on:
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    name: Lint HTML and CSS
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Lint HTML files
+      run: npx htmlhint src/**/*.html --config .htmlhintrc
+      
+    - name: Lint CSS files
+      run: npx stylelint styles/**/*.css --config .stylelintrc.json
+
+  build:
+    runs-on: ubuntu-latest
+    name: Build Static Website
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build website
+      run: npm run build
+      
+    - name: Verify build artifacts
+      run: ls -la dist/
