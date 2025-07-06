@@ -1,0 +1,21 @@
+{
+  "name": "blogging-website",
+  "version": "1.0.0",
+  "description": "A simple blogging website with DevOps CI/CD pipeline",
+  
+  "scripts": {
+    "build": "parcel build src/index.html --dist-dir dist --public-url ./",
+    "dev": "parcel src/index.html --dist-dir dist",
+    "lint:html": "htmlhint src/**/*.html",
+    "lint:css": "stylelint styles/**/*.css"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0"
+  },
+  "keywords": ["blog", "website", "devops"],
+  "author": "Your Name",
+  "license": "MIT"
+}
